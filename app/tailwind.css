@@ -15,6 +15,10 @@
   /* font settings */
   --font-sans:
     Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+
+  /* customize tw utilities */
+  --tracking-wide: 0.25em;
+  --tracking-widest: 0.5em;
 }
 
 @utility link {
@@ -23,5 +27,5 @@
 
 html,
 body {
-  @apply bg-background text-neutral;
+  @apply bg-background text-neutral overflow-x-hidden;
 }

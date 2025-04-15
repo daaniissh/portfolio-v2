@@ -1,6 +1,7 @@
 import type { MetaFunction } from '@remix-run/node';
 import GithubIcon from '~/components/icons/Github';
 import LinkedInIcon from '~/components/icons/LinkedIn';
+import { cn } from '~/utils/cn';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Suneeth S.' }, { name: 'description', content: 'Portfolio' }];
@@ -30,17 +31,26 @@ export default function Index() {
           </p>
         </div>
         <div className="flex flex-col gap-5">
-          {['projects', 'blog', 'contact'].map((item, idx) => (
-            <a
-              key={idx}
-              href={`#${item}`}
-              className="text-foreground flex items-center gap-2.5 text-xs font-bold tracking-[0.5em] uppercase"
-            >
-              0{idx + 1}
-              <span className="bg-foreground h-px w-10"></span>
-              {item}
-            </a>
-          ))}
+          {['projects', 'blog', 'contact'].map((item, idx) => {
+            const isActive = idx === 0;
+            return (
+              <a
+                key={idx}
+                href={`#${item}`}
+                className={cn(
+                  isActive ? 'text-foreground' : 'text-neutral',
+                  'flex items-center gap-2.5 text-[0.75em] font-bold tracking-widest uppercase'
+                )}
+              >
+                <span className="tracking-wide">
+                  <span className="text-primary">0</span>
+                  {idx + 1}
+                </span>
+                <span className={cn(isActive ? 'bg-foreground w-10' : 'bg-neutral w-5', 'h-px')}></span>
+                {item}
+              </a>
+            );
+          })}
         </div>
         <div className="mt-auto flex items-center gap-5">
           <a
