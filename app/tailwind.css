@@ -19,8 +19,12 @@
   /* customize tw utilities */
   --tracking-wide: 0.25em;
   --tracking-widest: 0.5em;
+
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: ease-in-out;
 }
 
+/* custom utilities */
 @utility link {
   @apply text-foreground decoration-primary underline decoration-2 underline-offset-2;
 }
