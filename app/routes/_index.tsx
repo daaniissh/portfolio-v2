@@ -1,3 +1,4 @@
+import type { MetaFunction } from '@remix-run/node';
 import GithubIcon from '~/components/icons/Github';
 import LinkedInIcon from '~/components/icons/LinkedIn';
 
@@ -32,8 +33,7 @@ export default function Index() {
           <a
             href="https://github.com/moonlitgrace"
             target="_blank"
-            className="flex items-center gap-2"
-            rel="noreferrer"
+            className="flex items-center gap-2" rel="noreferrer"
           >
             <GithubIcon className="size-5" />
             Github
@@ -41,8 +41,7 @@ export default function Index() {
           <a
             href="https://www.linkedin.com/in/suneeth-suresh"
             target="_blank"
-            className="flex items-center gap-2"
-            rel="noreferrer"
+            className="flex items-center gap-2" rel="noreferrer"
           >
             <LinkedInIcon className="size-5" />
             LinkedIn
