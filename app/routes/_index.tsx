@@ -19,11 +19,11 @@ export default function Index() {
           <p>
             Based in India, Kerala. I enjoy designing and developing thoughtful digital
             experiences. Lately, I’ve been building{' '}
-            <a href="https://github.com/coreproject-moe" target="_blank">
+            <a href="https://github.com/coreproject-moe" target="_blank" rel="noreferrer">
               CoreProject
             </a>{' '}
             and{' '}
-            <a href="https://github.com/quibble-dev" target="_blank">
+            <a href="https://github.com/quibble-dev" target="_blank" rel="noreferrer">
               Quibble
             </a>
             —two creative spaces where I explore ideas, community, and design.
@@ -33,7 +33,7 @@ export default function Index() {
           <a
             href="https://github.com/moonlitgrace"
             target="_blank"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2" rel="noreferrer"
           >
             <GithubIcon className="size-5" />
             Github
@@ -41,7 +41,7 @@ export default function Index() {
           <a
             href="https://www.linkedin.com/in/suneeth-suresh"
             target="_blank"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2" rel="noreferrer"
           >
             <LinkedInIcon className="size-5" />
             LinkedIn
