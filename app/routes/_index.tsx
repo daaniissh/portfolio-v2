@@ -17,23 +17,37 @@ export default function Index() {
             Suneeth S<span className="text-primary">.</span>
           </h1>
           <p>
-            Based in India, Kerala. I enjoy designing and developing thoughtful digital
-            experiences. Lately, I’ve been building{' '}
-            <a href="https://github.com/coreproject-moe" target="_blank" rel="noreferrer">
+            Based in India, Kerala. I enjoy designing and developing thoughtful digital experiences. Lately, I’ve been
+            building{' '}
+            <a href="https://github.com/coreproject-moe" target="_blank" rel="noreferrer" className="link">
               CoreProject
             </a>{' '}
             and{' '}
-            <a href="https://github.com/quibble-dev" target="_blank" rel="noreferrer">
+            <a href="https://github.com/quibble-dev" target="_blank" rel="noreferrer" className="link">
               Quibble
             </a>
             —two creative spaces where I explore ideas, community, and design.
           </p>
         </div>
+        <div className="flex flex-col gap-5">
+          {['projects', 'blog', 'contact'].map((item, idx) => (
+            <a
+              key={idx}
+              href={`#${item}`}
+              className="text-foreground flex items-center gap-2.5 text-xs font-bold tracking-[0.5em] uppercase"
+            >
+              0{idx + 1}
+              <span className="bg-foreground h-px w-10"></span>
+              {item}
+            </a>
+          ))}
+        </div>
         <div className="mt-auto flex items-center gap-5">
           <a
             href="https://github.com/moonlitgrace"
             target="_blank"
-            className="flex items-center gap-2" rel="noreferrer"
+            className="link flex items-center gap-2"
+            rel="noreferrer"
           >
             <GithubIcon className="size-5" />
             Github
@@ -41,7 +55,8 @@ export default function Index() {
           <a
             href="https://www.linkedin.com/in/suneeth-suresh"
             target="_blank"
-            className="flex items-center gap-2" rel="noreferrer"
+            className="link flex items-center gap-2"
+            rel="noreferrer"
           >
             <LinkedInIcon className="size-5" />
             LinkedIn

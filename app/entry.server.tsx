@@ -50,7 +50,7 @@ function handleBotRequest(
           resolve(
             new Response(stream, {
               headers: responseHeaders,
-              status: responseStatusCode
+              status: responseStatusCode,
             })
           );
 
@@ -67,7 +67,7 @@ function handleBotRequest(
           if (shellRendered) {
             console.error(error);
           }
-        }
+        },
       }
     );
 
@@ -96,7 +96,7 @@ function handleBrowserRequest(
           resolve(
             new Response(stream, {
               headers: responseHeaders,
-              status: responseStatusCode
+              status: responseStatusCode,
             })
           );
 
@@ -113,7 +113,7 @@ function handleBrowserRequest(
           if (shellRendered) {
             console.error(error);
           }
-        }
+        },
       }
     );
 
