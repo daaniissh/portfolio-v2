@@ -1,4 +1,3 @@
-// import type { MetaFunction } from '@remix-run/node';
 import GithubIcon from '~/components/icons/Github';
 import LinkedInIcon from '~/components/icons/LinkedIn';
 
