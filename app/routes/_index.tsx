@@ -13,7 +13,7 @@ export default function Index() {
 
   return (
     <main className="mx-auto flex min-h-dvh max-w-6xl gap-20 text-sm">
-      <div className="col-span-1 flex w-2/5 flex-col gap-10 py-20">
+      <div className="sticky top-0 col-span-1 flex max-h-dvh w-2/5 flex-col gap-10 py-20">
         <div className="flex flex-col gap-5">
           <h1 className="text-foreground text-7xl font-bold">
             Hello, I’m
@@ -55,7 +55,17 @@ export default function Index() {
           </a>
         </div>
       </div>
-      <div className="bg-secondary col-span-2 w-3/5"></div>
+      <div className="col-span-2 w-3/5 space-y-20 overflow-y-auto py-20">
+        <section id="projects" className="bg-secondary min-h-screen">
+          ...
+        </section>
+        <section id="blog" className="bg-secondary min-h-screen">
+          ...
+        </section>
+        <section id="contact" className="bg-secondary min-h-screen">
+          ...
+        </section>
+      </div>
     </main>
   );
 }

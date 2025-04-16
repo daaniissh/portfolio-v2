@@ -31,5 +31,5 @@
 
 html,
 body {
-  @apply bg-background text-neutral overflow-x-hidden;
+  @apply bg-background text-neutral;
 }

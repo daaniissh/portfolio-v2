@@ -8,14 +8,14 @@ export function useActiveSectionId(sectionIds: string[]): string {
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.intersectionRatio - b.intersectionRatio);
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visible.length > 0) {
           setActiveSection(visible[0].target.id);
         }
       },
       {
-        rootMargin: '-50% 0px -50% 0px',
+        rootMargin: '-25% 0px -25% 0px',
         threshold: [0.25, 0.5, 0.75],
       }
     );
