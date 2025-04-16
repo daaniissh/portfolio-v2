@@ -1,5 +1,5 @@
 import { type LoaderFunction, type MetaFunction } from '@remix-run/node';
-import { getProjectsSlugs } from '~/.server/projects';
+import { getAllProjects } from '~/.server/projects';
 import GithubIcon from '~/components/icons/Github';
 import LinkedInIcon from '~/components/icons/LinkedIn';
 import ProjectCard from '~/components/ProjectCard';
@@ -11,9 +11,9 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader: LoaderFunction = async () => {
-  const slugs = await getProjectsSlugs();
-  console.log(slugs);
-  return slugs;
+  const projects = await getAllProjects();
+  console.log(projects);
+  return { projects };
 };
 
 export default function Index() {
