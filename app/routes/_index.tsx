@@ -1,10 +1,19 @@
-import type { MetaFunction } from '@remix-run/node';
+import { type LoaderFunction, type MetaFunction } from '@remix-run/node';
+import { getProjectsSlugs } from '~/.server/projects';
 import GithubIcon from '~/components/icons/Github';
 import LinkedInIcon from '~/components/icons/LinkedIn';
+import ProjectCard from '~/components/ProjectCard';
 import SectionNav from '~/components/SectionNav';
+import projects from '~/data/mock/projects.json';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Suneeth S.' }, { name: 'description', content: 'Portfolio' }];
+};
+
+export const loader: LoaderFunction = async () => {
+  const slugs = await getProjectsSlugs();
+  console.log(slugs);
+  return slugs;
 };
 
 export default function Index() {
@@ -53,8 +62,10 @@ export default function Index() {
         </div>
       </div>
       <div className="col-span-2 w-3/5 space-y-20 overflow-y-auto py-20">
-        <section id="projects" className="bg-secondary min-h-screen">
-          ...
+        <section id="projects">
+          {projects.map((project, idx) => (
+            <ProjectCard key={idx} {...project} />
+          ))}
         </section>
         <section id="blog" className="bg-secondary min-h-screen">
           ...
