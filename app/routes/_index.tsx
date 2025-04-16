@@ -2,15 +2,12 @@ import type { MetaFunction } from '@remix-run/node';
 import GithubIcon from '~/components/icons/Github';
 import LinkedInIcon from '~/components/icons/LinkedIn';
 import SectionNav from '~/components/SectionNav';
-import { useActiveSectionId } from '~/hooks/useActiveSectionId';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Suneeth S.' }, { name: 'description', content: 'Portfolio' }];
 };
 
 export default function Index() {
-  const activeSectionId = useActiveSectionId(['projects', 'blog', 'contact']);
-
   return (
     <main className="mx-auto flex min-h-dvh max-w-6xl gap-20 text-sm">
       <div className="sticky top-0 col-span-1 flex max-h-dvh w-2/5 flex-col gap-10 py-20">
@@ -33,7 +30,7 @@ export default function Index() {
             —two creative spaces where I explore ideas, community, and design.
           </p>
         </div>
-        <SectionNav activeId={activeSectionId} />
+        <SectionNav />
         <div className="mt-auto flex items-center gap-5">
           <a
             href="https://github.com/moonlitgrace"

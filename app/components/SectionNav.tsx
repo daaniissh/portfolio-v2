@@ -1,14 +1,13 @@
+import { useActiveSectionId } from '~/hooks/useActiveSectionId';
 import { cn } from '~/utils/cn';
 
-interface Props {
-  activeId: string;
-}
+export default function SectionNav() {
+  const activeSectionId = useActiveSectionId(['projects', 'blog', 'contact']);
 
-export default function SectionNav({ activeId }: Props) {
   return (
     <div className="flex flex-col gap-5">
       {['projects', 'blog', 'contact'].map((item, idx) => {
-        const isActive = item === activeId;
+        const isActive = item === activeSectionId;
         return (
           <a
             key={idx}
