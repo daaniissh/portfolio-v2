@@ -1,7 +1,8 @@
 {
-  "coreproject-moe/CoreProject": { "stars": 126, "language": "Python", "ok": true },
-  "quibble-dev/Quibble": { "stars": 7, "language": "Svelte", "ok": true },
   "moonlitgrace/moonlitgrace.space": { "stars": 2, "language": "TypeScript", "ok": true },
+  "coreproject-moe/monorepo": { "stars": 3, "language": "TypeScript", "ok": true },
+  "moonlitgrace/svelte-medium-image-zoom": { "stars": 11, "language": "Svelte", "ok": true },
+  "coreproject-moe/CoreProject": { "stars": 126, "language": "Python", "ok": true },
   "moonlitgrace/mangareader-api": { "stars": 26, "language": "Python", "ok": true },
-  "moonlitgrace/svelte-medium-image-zoom": { "stars": 11, "language": "Svelte", "ok": true }
+  "quibble-dev/Quibble": { "stars": 7, "language": "Svelte", "ok": true }
 }

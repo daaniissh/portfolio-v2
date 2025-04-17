@@ -39,10 +39,16 @@ export async function fetchGithubStats(repoUrl: string): Promise<CacheValue> {
   }
 
   // fetch from API
-  const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
-  if (!response.ok) return invalidStats;
+  const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+    },
+  });
 
+  if (!response.ok) return invalidStats;
   const data = await response.json();
+
   const statsObj = {
     stars: data.stargazers_count,
     language: data.language,
