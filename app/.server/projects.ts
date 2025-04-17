@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 import { IProjectCard } from '~/interfaces/project';
+import { fetchGithubStats } from './github-stats';
 
 const projectsDir = path.join(process.cwd(), 'content/projects');
 
@@ -19,12 +20,20 @@ export async function getProjectData(slug: string): Promise<IProjectCard> {
   const { data, content } = matter(fileContent);
   // convert md to html
   const contentHTML = await marked.parse(content);
+  // fetch stars count if githubUrl exists
+  let stars = 0;
+  let language = 'Nil';
+  if (data.githubUrl) {
+    const stats = await fetchGithubStats(data.githubUrl);
+    (stars = stats.stars), (language = stats.language);
+  }
 
   return {
     ...data,
+    stars,
+    language,
     slug,
     contentHTML,
-    stars: 0, // get dynamic count
   } as IProjectCard;
 }
 

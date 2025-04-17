@@ -3,6 +3,7 @@ export interface IProjectCard {
   slug: string;
   description: string;
   contentHTML: string;
+  language: string;
   languages: string[];
   stars: number;
   liveUrl?: string;
