@@ -62,8 +62,8 @@ export default function Index() {
           </a>
         </div>
       </div>
-      <div className="col-span-2 w-3/5 space-y-20 overflow-y-auto py-20">
-        <section id="projects" className="space-y-2">
+      <div className="col-span-2 w-3/5 space-y-20 py-20">
+        <section id="projects" className="group space-y-2">
           {data.projects.map((project, idx) => (
             <ProjectCard key={idx} {...project} />
           ))}
