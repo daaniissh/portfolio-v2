@@ -6,14 +6,4 @@ liveUrl: 'https://quibble.moonlitgrace.space'
 githubUrl: 'https://github.com/quibble-dev/Quibble'
 ---
 
-## Project Description
-
-This is my **awesome** project featuring:
-
-- Product catalog
-- Cart system
-- Payment integration
-
-## Challenges Overcome
-
-Some markdown content...
+## Overview

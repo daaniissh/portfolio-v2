@@ -40,5 +40,5 @@ export async function getProjectData(slug: string): Promise<IProjectCard> {
 export async function getAllProjects(): Promise<IProjectCard[]> {
   const slugs = await getProjectsSlugs();
   const projects = await Promise.all(slugs.map((slug) => getProjectData(slug)));
-  return projects;
+  return projects.sort((a, b) => b.stars - a.stars);
 }
