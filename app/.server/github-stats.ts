@@ -4,7 +4,7 @@ import path from 'path';
 type Cache = Record<string, CacheValue>;
 type CacheValue = { stars: number; language: string; ok: boolean };
 
-const CACHE_FILE = path.join(process.cwd(), '.github-stars-cache.json');
+const CACHE_FILE = path.join(process.cwd(), '.github-stats-cache.json');
 const invalidStats = { stars: 0, language: 'Nil', ok: false } satisfies CacheValue;
 
 async function readCache(): Promise<Cache> {
