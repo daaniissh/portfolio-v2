@@ -24,6 +24,7 @@ export async function getProjectData(slug: string): Promise<IProjectCard> {
     ...data,
     slug,
     contentHTML,
+    stars: 0, // get dynamic count
   } as IProjectCard;
 }
 

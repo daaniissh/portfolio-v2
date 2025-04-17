@@ -1,10 +1,10 @@
-import { IProjectCardLegacy } from '~/interfaces/project';
+import { IProjectCard } from '~/interfaces/project';
 import StarIcon from './icons/Star';
 
-export default function ProjectCard({ lang, name, description, stars }: IProjectCardLegacy) {
+export default function ProjectCard({ languages, name, description, stars }: IProjectCard) {
   return (
     <div className="bg-secondary flex flex-col gap-2 p-10">
-      <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">{lang}</span>
+      <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">{languages[0]}</span>
       <h3 className="text-foreground text-2xl font-bold">{name}</h3>
       <p>{description}</p>
       <span className="inline-flex items-center gap-1 text-xs font-bold">

@@ -1,22 +1,23 @@
-import { type LoaderFunction, type MetaFunction } from '@remix-run/node';
+import { type MetaFunction } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
 import { getAllProjects } from '~/.server/projects';
 import GithubIcon from '~/components/icons/Github';
 import LinkedInIcon from '~/components/icons/LinkedIn';
 import ProjectCard from '~/components/ProjectCard';
 import SectionNav from '~/components/SectionNav';
-import projects from '~/data/mock/projects.json';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Suneeth S.' }, { name: 'description', content: 'Portfolio' }];
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const projects = await getAllProjects();
-  console.log(projects);
   return { projects };
 };
 
 export default function Index() {
+  const data = useLoaderData<typeof loader>();
+
   return (
     <main className="mx-auto flex min-h-dvh max-w-6xl gap-20 text-sm">
       <div className="sticky top-0 col-span-1 flex max-h-dvh w-2/5 flex-col gap-10 py-20">
@@ -62,8 +63,8 @@ export default function Index() {
         </div>
       </div>
       <div className="col-span-2 w-3/5 space-y-20 overflow-y-auto py-20">
-        <section id="projects">
-          {projects.map((project, idx) => (
+        <section id="projects" className="space-y-2">
+          {data.projects.map((project, idx) => (
             <ProjectCard key={idx} {...project} />
           ))}
         </section>
