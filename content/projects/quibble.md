@@ -1,5 +1,5 @@
 ---
-name: 'quibble-dev/Quibble'
+name: '@quibble-dev/Quibble'
 description: 'A modern Reddit-inspired platform built with SvelteKit and Django. Features multi-profile support, community creation, and rich threaded discussions.'
 languages: ['Svelte', 'Python', 'TypeScript']
 liveUrl: 'https://quibble.moonlitgrace.space'
