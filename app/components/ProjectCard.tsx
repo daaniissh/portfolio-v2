@@ -9,7 +9,7 @@ export default function ProjectCard({
   stars,
   slug,
   downloads,
-  isNpmPackage,
+  is_npm_package,
 }: IProjectCard) {
   return (
     <a
@@ -18,7 +18,7 @@ export default function ProjectCard({
     >
       <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">{language}</span>
       <h3 className="text-foreground text-2xl font-bold">
-        {isNpmPackage && '[npm] '}
+        {is_npm_package && '[npm] '}
         {name}
       </h3>
       <p>{description}</p>
@@ -27,7 +27,7 @@ export default function ProjectCard({
           <StarIcon className="size-5" />
           {stars}
         </span>
-        {isNpmPackage && (
+        {is_npm_package && (
           <span className="inline-flex items-center gap-1 text-xs font-bold">
             <DownloadIcon className="size-5" />
             {downloads}/mo

@@ -3,7 +3,7 @@ export interface IProjectCard {
   slug: string;
   description: string;
   languages: string[];
-  isNpmPackage: boolean;
+  is_npm_package: boolean;
   language: string;
   stars: number;
   downloads: number;
