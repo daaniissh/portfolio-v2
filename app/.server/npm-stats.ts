@@ -3,7 +3,7 @@ import { LRUCache } from 'lru-cache';
 type NpmCache = { downloads: number; ok: boolean };
 
 const cache = new LRUCache<string, NpmCache>({
-  max: 100,
+  max: 10,
   ttl: 1000 * 60 * 60 * 12, // 12 hr
 });
 

@@ -27,7 +27,7 @@ export async function getProjectData(slug: string): Promise<IProjectCard> {
   let downloads = 0;
 
   const [githubStats, npmStats] = await Promise.all([
-    data.github_url ? fetchGithubStats(data.github_url) : Promise.resolve(null),
+    data.githubURL ? fetchGithubStats(data.githubURL) : Promise.resolve(null),
     data.is_npm_package ? fetchNpmStats(data.name) : Promise.resolve(null),
   ]);
 
