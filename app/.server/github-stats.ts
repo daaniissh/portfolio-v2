@@ -1,42 +1,26 @@
-import fs from 'fs/promises';
-import path from 'path';
+import { LRUCache } from 'lru-cache';
 
-type Cache = Record<string, CacheValue>;
-type CacheValue = { stars: number; language: string; ok: boolean };
+type Cache = { stars: number; language: string; ok: boolean };
 
-const CACHE_FILE = path.join(process.cwd(), '.github-stats-cache.json');
-const invalidStats = { stars: 0, language: 'Nil', ok: false } satisfies CacheValue;
+const cache = new LRUCache<string, Cache>({
+  max: 100,
+  ttl: 1000 * 60 * 60, // 1 hr
+});
 
-async function readCache(): Promise<Cache> {
-  try {
-    const data = await fs.readFile(CACHE_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (err) {
-    console.error('Error while parsing cache: ', err);
-    return {};
-  }
-}
+const INVALID_STATS_OBJ = { stars: 0, language: 'Nil', ok: false } satisfies Cache;
 
-async function writeCache(data: Cache) {
-  try {
-    await fs.writeFile(CACHE_FILE, JSON.stringify(data));
-  } catch (err) {
-    console.error('Error while writing cache: ', err);
-  }
-}
-
-export async function fetchGithubStats(repoUrl: string): Promise<CacheValue> {
-  const cache = await readCache();
+export async function fetchGithubStats(repoUrl: string): Promise<Cache> {
   const match = repoUrl.match(/github\.com\/([^/]+)\/([^/]+)/);
-  if (!match) return invalidStats;
+  if (!match) return INVALID_STATS_OBJ;
 
   const [, owner, repo] = match;
   const cacheKey = `${owner}/${repo}`;
 
   // early return cached stars
-  if (cache[cacheKey]) {
-    return cache[cacheKey];
-  }
+  const cached = cache.get(cacheKey);
+  if (cached) {
+    return cached;
+  } else console.log('cache not found for: ', cacheKey);
 
   // fetch from API
   const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
@@ -46,18 +30,16 @@ export async function fetchGithubStats(repoUrl: string): Promise<CacheValue> {
     },
   });
 
-  if (!response.ok) return invalidStats;
+  if (!response.ok) return INVALID_STATS_OBJ;
   const data = await response.json();
 
-  const statsObj = {
+  const result = {
     stars: data.stargazers_count,
     language: data.language,
     ok: true,
-  } satisfies CacheValue;
+  } satisfies Cache;
 
   // update cache
-  cache[cacheKey] = statsObj;
-  await writeCache(cache);
-
-  return statsObj;
+  cache.set(cacheKey, result);
+  return result;
 }
