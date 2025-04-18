@@ -1,15 +1,15 @@
 import { LRUCache } from 'lru-cache';
 
-type GithubStatsCache = { stars: number; language: string; ok: boolean };
+type GithubCache = { stars: number; language: string; ok: boolean };
 
-const cache = new LRUCache<string, GithubStatsCache>({
+const cache = new LRUCache<string, GithubCache>({
   max: 100,
   ttl: 1000 * 60 * 60, // 1 hr
 });
 
-const INVALID_STATS_OBJ = { stars: 0, language: 'Nil', ok: false } satisfies GithubStatsCache;
+const INVALID_STATS_OBJ = { stars: 0, language: 'Nil', ok: false } satisfies GithubCache;
 
-export async function fetchGithubStats(repoUrl: string): Promise<GithubStatsCache> {
+export async function fetchGithubStats(repoUrl: string): Promise<GithubCache> {
   const match = repoUrl.match(/github\.com\/([^/]+)\/([^/]+)/);
   if (!match) return INVALID_STATS_OBJ;
 
@@ -35,7 +35,7 @@ export async function fetchGithubStats(repoUrl: string): Promise<GithubStatsCach
     stars: data.stargazers_count,
     language: data.language,
     ok: true,
-  } satisfies GithubStatsCache;
+  } satisfies GithubCache;
 
   // update cache
   cache.set(cacheKey, result);

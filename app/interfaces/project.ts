@@ -7,7 +7,7 @@ export interface IProjectCard {
   language: string;
   stars: number;
   downloads: number;
-  liveUrl?: string;
-  githubUrl?: string[];
+  live_url?: string;
+  github_url?: string[];
   contentHTML: string;
 }

@@ -6,15 +6,15 @@ import { IProjectCard } from '~/interfaces/project';
 import { fetchGithubStats } from './github-stats';
 import { fetchNpmStats } from './npm-stats';
 
-const projectsDir = path.join(process.cwd(), 'content/projects');
+const PROJECTS_DIR = path.join(process.cwd(), 'content/projects');
 
 export async function getProjectsSlugs(): Promise<string[]> {
-  const files = await fs.readdir(projectsDir);
+  const files = await fs.readdir(PROJECTS_DIR);
   return files.map((file) => file.replace(/\.md$/, ''));
 }
 
 export async function getProjectData(slug: string): Promise<IProjectCard> {
-  const filePath = path.join(projectsDir, `${slug}.md`);
+  const filePath = path.join(PROJECTS_DIR, `${slug}.md`);
   const fileContent = await fs.readFile(filePath, 'utf8');
 
   // parse frontmatter
@@ -27,8 +27,8 @@ export async function getProjectData(slug: string): Promise<IProjectCard> {
   let downloads = 0;
 
   const [githubStats, npmStats] = await Promise.all([
-    data.githubUrl ? fetchGithubStats(data.githubUrl) : Promise.resolve(null),
-    data.isNpmPackage ? fetchNpmStats(data.name) : Promise.resolve(null),
+    data.github_url ? fetchGithubStats(data.github_url) : Promise.resolve(null),
+    data.is_npm_package ? fetchNpmStats(data.name) : Promise.resolve(null),
   ]);
 
   if (githubStats) (stars = githubStats.stars), (language = githubStats.language);
