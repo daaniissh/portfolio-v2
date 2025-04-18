@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import { marked } from 'marked';
 import { IProjectCard } from '~/interfaces/project';
 import { fetchGithubStats } from './github-stats';
+import { fetchNpmStats } from './npm-stats';
 
 const projectsDir = path.join(process.cwd(), 'content/projects');
 
@@ -23,15 +24,21 @@ export async function getProjectData(slug: string): Promise<IProjectCard> {
   // fetch stars count if githubUrl exists
   let stars = 0;
   let language = 'Nil';
-  if (data.githubUrl) {
-    const stats = await fetchGithubStats(data.githubUrl);
-    (stars = stats.stars), (language = stats.language);
-  }
+  let downloads = 0;
+
+  const [githubStats, npmStats] = await Promise.all([
+    data.githubUrl ? fetchGithubStats(data.githubUrl) : Promise.resolve(null),
+    data.isNpmPackage ? fetchNpmStats(data.name) : Promise.resolve(null),
+  ]);
+
+  if (githubStats) (stars = githubStats.stars), (language = githubStats.language);
+  if (npmStats) downloads = npmStats.downloads;
 
   return {
     ...data,
     stars,
     language,
+    downloads,
     slug,
     contentHTML,
   } as IProjectCard;
