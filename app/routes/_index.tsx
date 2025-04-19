@@ -1,12 +1,15 @@
 import { type MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
+import { useEffect, useState } from 'react';
 import { getAllPosts } from '~/.server/posts';
 import { getAllProjects } from '~/.server/projects';
 import GithubIcon from '~/components/icons/Github';
 import LinkedInIcon from '~/components/icons/LinkedIn';
 import PostCard from '~/components/PostCard';
 import ProjectCard from '~/components/ProjectCard';
-import SectionNav from '~/components/SectionNav';
+import SectionNav from '~/components/shared/SectionNav';
+import { Nullable } from '~/types/generics';
+import { getPublicEnv } from '~/utils/env';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Suneeth S.' }, { name: 'description', content: 'Portfolio' }];
@@ -20,6 +23,15 @@ export const loader = async () => {
 
 export default function Index() {
   const data = useLoaderData<typeof loader>();
+  const [blogApiURL, setBlogApiURL] = useState<Nullable<string>>(null);
+
+  useEffect(() => {
+    const _url = getPublicEnv('BLOG_API_URL');
+    if (_url) {
+      const newUrl = new URL(_url);
+      setBlogApiURL(newUrl.hostname);
+    }
+  }, []);
 
   return (
     <main className="mx-auto flex min-h-dvh max-w-6xl gap-20 text-sm">
@@ -45,12 +57,7 @@ export default function Index() {
         </div>
         <SectionNav />
         <div className="mt-auto flex items-center gap-5">
-          <a
-            href="https://github.com/moonlitgrace"
-            target="_blank"
-            className="link flex items-center gap-2"
-            rel="noreferrer"
-          >
+          <a href={`https://${blogApiURL}`} target="_blank" className="link flex items-center gap-2" rel="noreferrer">
             <GithubIcon className="size-5" />
             Github
           </a>
@@ -75,9 +82,10 @@ export default function Index() {
           <a
             href="https://moonlitgrace.space"
             target="_blank"
-            className="text-foreground absolute top-5 left-1/2 ml-1 text-[0.75em] font-bold tracking-widest uppercase" rel="noreferrer"
+            className="text-foreground absolute top-5 left-1/2 ml-1 text-[0.75em] font-bold tracking-widest uppercase"
+            rel="noreferrer"
           >
-            moonlitgrace.space
+            {blogApiURL}
           </a>
           {data.posts.map((post, idx) => (
             <PostCard key={idx} translateDown={idx % 2 !== 0} {...post} />

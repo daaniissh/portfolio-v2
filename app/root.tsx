@@ -1,7 +1,8 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteLoaderData } from '@remix-run/react';
 import type { LinksFunction } from '@remix-run/node';
-
 import './tailwind.css';
+import { getPublicEnvs } from './.server/env';
+import PublicEnv from './components/shared/PublicEnv';
 
 export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -16,7 +17,13 @@ export const links: LinksFunction = () => [
   },
 ];
 
+export async function loader() {
+  return getPublicEnvs();
+}
+
 export function Layout() {
+  const data = useRouteLoaderData<typeof loader>('root');
+
   return (
     <html lang="en">
       <head>
@@ -28,6 +35,7 @@ export function Layout() {
       <body>
         <Outlet />
         <ScrollRestoration />
+        {data !== undefined && <PublicEnv {...data.ENV} />}
         <Scripts />
       </body>
     </html>
