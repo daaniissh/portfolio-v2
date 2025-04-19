@@ -71,7 +71,7 @@ export default function Index() {
             <ProjectCard key={idx} {...project} />
           ))}
         </section>
-        <section id="blog" className="bg-secondary min-h-screen">
+        <section id="blog" className="group grid grid-cols-2 gap-2">
           {data.posts.map((post, idx) => (
             <PostCard key={idx} {...post} />
           ))}
