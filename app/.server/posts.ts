@@ -16,12 +16,13 @@ export async function getAllPosts(): Promise<IPost[]> {
     }
 
     const { data }: { data: IPost[] } = await response.json();
-
-    postsCache.set(cacheKey, data);
-    return data.map((post) => ({
+    const newData = data.map((post) => ({
       ...post,
       apiURL: getApiURL(post.slug),
     }));
+
+    postsCache.set(cacheKey, newData);
+    return newData;
   } catch (err) {
     console.error('Failed to fetch posts: ', err);
     return [];
