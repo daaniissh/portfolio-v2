@@ -2,7 +2,7 @@ import { Post } from '~/interfaces/post';
 
 export async function getAllPosts(): Promise<Post[]> {
   try {
-    const response = await fetch(process.env.BLOG_API_URL as string);
+    const response = await fetch(process.env.BLOG_API_URL!);
     if (!response.ok) {
       throw new Error(`Error, status: ${response.status}`);
     }
