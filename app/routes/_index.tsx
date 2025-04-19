@@ -71,7 +71,14 @@ export default function Index() {
             <ProjectCard key={idx} {...project} />
           ))}
         </section>
-        <section id="blog" className="group grid grid-cols-2 gap-2">
+        <section id="blog" className="group relative grid grid-cols-2 gap-2">
+          <a
+            href="https://moonlitgrace.space"
+            target="_blank"
+            className="text-foreground absolute top-5 left-1/2 ml-1 text-[0.75em] font-bold tracking-widest uppercase" rel="noreferrer"
+          >
+            moonlitgrace.space
+          </a>
           {data.posts.map((post, idx) => (
             <PostCard key={idx} translateDown={idx % 2 !== 0} {...post} />
           ))}
