@@ -73,7 +73,7 @@ export default function Index() {
         </section>
         <section id="blog" className="group grid grid-cols-2 gap-2">
           {data.posts.map((post, idx) => (
-            <PostCard key={idx} {...post} />
+            <PostCard key={idx} translateDown={idx % 2 !== 0} {...post} />
           ))}
         </section>
         <section id="contact" className="bg-secondary min-h-screen">
