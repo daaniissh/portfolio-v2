@@ -1,15 +1,8 @@
-import { LRUCache } from 'lru-cache';
+import { githubCache, IGithubCache } from '~/utils/cache.server';
 
-type GithubCache = { stars: number; language: string; languages: string[]; ok: boolean };
+const INVALID_STATS = { stars: 0, language: 'Nil', languages: [], ok: false } satisfies IGithubCache;
 
-const cache = new LRUCache<string, GithubCache>({
-  max: 10,
-  ttl: 1000 * 60 * 60, // 1 hr
-});
-
-const INVALID_STATS = { stars: 0, language: 'Nil', languages: [], ok: false } satisfies GithubCache;
-
-export async function fetchGithubStats(repoUrl: string): Promise<GithubCache> {
+export async function fetchGithubStats(repoUrl: string): Promise<IGithubCache> {
   const match = repoUrl.match(/github\.com\/([^/]+)\/([^/]+)/);
   if (!match) return INVALID_STATS;
 
@@ -17,7 +10,7 @@ export async function fetchGithubStats(repoUrl: string): Promise<GithubCache> {
   const cacheKey = `${owner}/${repo}`;
 
   // early return cached stars
-  const cached = cache.get(cacheKey);
+  const cached = githubCache.get(cacheKey);
   if (cached) return cached;
 
   const headers = {
@@ -40,9 +33,9 @@ export async function fetchGithubStats(repoUrl: string): Promise<GithubCache> {
     language: repoData.language,
     languages: Object.keys(repoLangsData),
     ok: true,
-  } satisfies GithubCache;
+  } satisfies IGithubCache;
 
   // update cache
-  cache.set(cacheKey, result);
+  githubCache.set(cacheKey, result);
   return result;
 }

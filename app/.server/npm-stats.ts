@@ -1,16 +1,9 @@
-import { LRUCache } from 'lru-cache';
+import { INpmCache, npmCache } from '~/utils/cache.server';
 
-type NpmCache = { downloads: number; ok: boolean };
+const INVALID_STATS_OBJ = { downloads: 0, ok: false } satisfies INpmCache;
 
-const cache = new LRUCache<string, NpmCache>({
-  max: 10,
-  ttl: 1000 * 60 * 60 * 12, // 12 hr
-});
-
-const INVALID_STATS_OBJ = { downloads: 0, ok: false } satisfies NpmCache;
-
-export async function fetchNpmStats(packageName: string): Promise<NpmCache> {
-  const cached = cache.get(packageName);
+export async function fetchNpmStats(packageName: string): Promise<INpmCache> {
+  const cached = npmCache.get(packageName);
   if (cached) return cached;
 
   const response = await fetch(`https://api.npmjs.org/downloads/point/last-month/${packageName}`);
@@ -20,8 +13,8 @@ export async function fetchNpmStats(packageName: string): Promise<NpmCache> {
   const result = {
     downloads: data.downloads,
     ok: true,
-  } satisfies NpmCache;
+  } satisfies INpmCache;
 
-  cache.set(packageName, result);
+  npmCache.set(packageName, result);
   return result;
 }

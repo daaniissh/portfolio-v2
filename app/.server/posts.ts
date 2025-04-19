@@ -1,16 +1,12 @@
 import { IPost } from '~/interfaces/post';
-import { LRUCache } from 'lru-cache';
+import { postsCache } from '~/utils/cache.server';
 
 const API_URL = process.env.BLOG_API_URL!;
-const cache = new LRUCache<string, IPost[]>({
-  max: 100,
-  ttl: 1000 * 60 * 60 * 24, // 1 day
-});
 
 export async function getAllPosts(): Promise<IPost[]> {
   const cacheKey = 'all-posts';
 
-  const cachedPosts = cache.get(cacheKey);
+  const cachedPosts = postsCache.get(cacheKey);
   if (cachedPosts) return cachedPosts;
 
   try {
@@ -21,7 +17,7 @@ export async function getAllPosts(): Promise<IPost[]> {
 
     const { data }: { data: IPost[] } = await response.json();
 
-    cache.set(cacheKey, data);
+    postsCache.set(cacheKey, data);
     return data.map((post) => ({
       ...post,
       apiURL: getApiURL(post.slug),
