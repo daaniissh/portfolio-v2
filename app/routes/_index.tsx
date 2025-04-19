@@ -4,6 +4,7 @@ import { getAllPosts } from '~/.server/posts';
 import { getAllProjects } from '~/.server/projects';
 import GithubIcon from '~/components/icons/Github';
 import LinkedInIcon from '~/components/icons/LinkedIn';
+import PostCard from '~/components/PostCard';
 import ProjectCard from '~/components/ProjectCard';
 import SectionNav from '~/components/SectionNav';
 
@@ -71,7 +72,9 @@ export default function Index() {
           ))}
         </section>
         <section id="blog" className="bg-secondary min-h-screen">
-          ...
+          {data.posts.map((post, idx) => (
+            <PostCard key={idx} {...post} />
+          ))}
         </section>
         <section id="contact" className="bg-secondary min-h-screen">
           ...
