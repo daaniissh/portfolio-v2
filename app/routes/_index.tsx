@@ -1,5 +1,6 @@
 import { type MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
+import { getAllPosts } from '~/.server/posts';
 import { getAllProjects } from '~/.server/projects';
 import GithubIcon from '~/components/icons/Github';
 import LinkedInIcon from '~/components/icons/LinkedIn';
@@ -12,7 +13,8 @@ export const meta: MetaFunction = () => {
 
 export const loader = async () => {
   const projects = await getAllProjects();
-  return { projects };
+  const posts = await getAllPosts();
+  return { projects, posts };
 };
 
 export default function Index() {
