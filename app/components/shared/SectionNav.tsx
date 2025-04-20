@@ -1,12 +1,14 @@
 import { useActiveSectionId } from '~/hooks/useActiveSectionId';
 import { cn } from '~/utils/cn';
 
+const navSections = ['projects', 'blog', 'sections'];
+
 export default function SectionNav() {
-  const activeSectionId = useActiveSectionId(['projects', 'blog', 'contact']);
+  const activeSectionId = useActiveSectionId(navSections);
 
   return (
     <div className="flex flex-col gap-5">
-      {['projects', 'blog', 'contact'].map((item, idx) => {
+      {navSections.map((item, idx) => {
         const isActive = item === activeSectionId;
         return (
           <a

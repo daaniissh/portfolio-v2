@@ -91,8 +91,22 @@ export default function Index() {
             <PostCard key={idx} translateDown={idx % 2 !== 0} {...post} />
           ))}
         </section>
-        <section id="contact" className="bg-secondary min-h-screen">
-          ...
+        <section id="sections" className="flex min-h-screen flex-col gap-2">
+          <h3 className="text-foreground text-2xl font-bold">Skills</h3>
+          <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">languages</span>
+          <img src="https://go-skill-icons.vercel.app/api/icons?i=py,ts,js,html,css,bash" alt="languages" />
+          <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">
+            frameworks & libraries
+          </span>
+          <img
+            src="https://go-skill-icons.vercel.app/api/icons?i=svelte,react,django,nodejs,tailwind,nextjs,express"
+            alt="frameworks & libraries"
+          />
+          <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">tools & platforms</span>
+          <img
+            src="https://go-skill-icons.vercel.app/api/icons?i=docker,git,linux,vite,figma,postgres,vercel,flyio"
+            alt="tools & platforms"
+          />
         </section>
       </div>
     </main>
