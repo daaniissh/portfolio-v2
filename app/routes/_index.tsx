@@ -3,8 +3,11 @@ import { useLoaderData } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { getAllPosts } from '~/.server/posts';
 import { getAllProjects } from '~/.server/projects';
+import EmailIcon from '~/components/icons/Email';
 import GithubIcon from '~/components/icons/Github';
+import InstagramIcon from '~/components/icons/Instagram';
 import LinkedInIcon from '~/components/icons/LinkedIn';
+import TelegramIcon from '~/components/icons/Telegram';
 import PostCard from '~/components/PostCard';
 import ProjectCard from '~/components/ProjectCard';
 import SectionNav from '~/components/shared/SectionNav';
@@ -91,22 +94,56 @@ export default function Index() {
             <PostCard key={idx} translateDown={idx % 2 !== 0} {...post} />
           ))}
         </section>
-        <section id="sections" className="flex min-h-screen flex-col gap-2">
-          <h3 className="text-foreground text-2xl font-bold">Skills</h3>
-          <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">languages</span>
-          <img src="https://go-skill-icons.vercel.app/api/icons?i=py,ts,js,html,css,bash" alt="languages" />
-          <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">
-            frameworks & libraries
-          </span>
-          <img
-            src="https://go-skill-icons.vercel.app/api/icons?i=svelte,react,django,nodejs,tailwind,nextjs,express"
-            alt="frameworks & libraries"
-          />
-          <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">tools & platforms</span>
-          <img
-            src="https://go-skill-icons.vercel.app/api/icons?i=docker,git,linux,vite,figma,postgres,vercel,flyio"
-            alt="tools & platforms"
-          />
+        <section id="sections" className="space-y-20">
+          <div className="flex flex-col gap-2">
+            <h3 className="text-foreground text-2xl font-bold">Skills</h3>
+            <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">languages</span>
+            <img src="https://go-skill-icons.vercel.app/api/icons?i=py,ts,js,html,css,bash" alt="languages" />
+            <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">
+              frameworks & libraries
+            </span>
+            <img
+              src="https://go-skill-icons.vercel.app/api/icons?i=svelte,react,django,nodejs,tailwind,nextjs,express"
+              alt="frameworks & libraries"
+            />
+            <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">tools & platforms</span>
+            <img
+              src="https://go-skill-icons.vercel.app/api/icons?i=docker,git,linux,vite,figma,postgres,vercel,flyio"
+              alt="tools & platforms"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <h3 className="text-foreground text-2xl font-bold">Contact</h3>
+            <div className="mt-auto flex items-center gap-5">
+              <a
+                href="https://www.linkedin.com/in/suneeth-suresh"
+                target="_blank"
+                className="link flex items-center gap-2"
+                rel="noreferrer"
+              >
+                <EmailIcon className="size-5" />
+                Email
+              </a>
+              <a
+                href="http://t.me/moonlitgrace"
+                target="_blank"
+                className="link flex items-center gap-2"
+                rel="noreferrer"
+              >
+                <TelegramIcon className="size-5" />
+                Telegram
+              </a>
+              <a
+                href="https://www.instagram.com/sssuneeth/"
+                target="_blank"
+                className="link flex items-center gap-2"
+                rel="noreferrer"
+              >
+                <InstagramIcon className="size-5" />
+                Instagram
+              </a>
+            </div>
+          </div>
         </section>
       </div>
     </main>
