@@ -1,16 +1,8 @@
-import { IProjectCard } from '~/interfaces/project';
+import { IProject } from '~/interfaces/project';
 import StarIcon from './icons/Star';
 import DownloadIcon from './icons/Download';
 
-export default function ProjectCard({
-  language,
-  name,
-  description,
-  stars,
-  slug,
-  downloads,
-  is_npm_package,
-}: IProjectCard) {
+export default function ProjectCard({ language, name, description, stars, slug, downloads, is_npm_package }: IProject) {
   return (
     <a
       href={`/p/${slug}`}

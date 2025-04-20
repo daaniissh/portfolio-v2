@@ -2,9 +2,10 @@ import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
-import { IProjectCard } from '~/interfaces/project';
-import { fetchGithubStats } from './github-stats';
-import { fetchNpmStats } from './npm-stats';
+import { IProject } from '~/interfaces/project';
+import { fetchGithubStats } from '../functions/github-stats';
+import { fetchNpmStats } from '../functions/npm-stats';
+import { cache } from './cache';
 
 const PROJECTS_DIR = path.join(process.cwd(), 'content/projects');
 
@@ -13,7 +14,7 @@ export async function getProjectsSlugs(): Promise<string[]> {
   return files.map((file) => file.replace(/\.md$/, ''));
 }
 
-export async function getProjectData(slug: string): Promise<IProjectCard> {
+export async function getProjectData(slug: string): Promise<IProject> {
   const filePath = path.join(PROJECTS_DIR, `${slug}.md`);
   const fileContent = await fs.readFile(filePath, 'utf8');
 
@@ -41,11 +42,17 @@ export async function getProjectData(slug: string): Promise<IProjectCard> {
     downloads,
     slug,
     contentHTML,
-  } as IProjectCard;
+  } as IProject;
 }
 
-export async function getAllProjects(): Promise<IProjectCard[]> {
+export async function getAllProjects(): Promise<IProject[]> {
+  const cached = cache.get('projects');
+  if (cached) return cached;
+
   const slugs = await getProjectsSlugs();
   const projects = await Promise.all(slugs.map((slug) => getProjectData(slug)));
-  return projects.sort((a, b) => b.stars - a.stars);
+  const sorted = projects.sort((a, b) => b.stars - a.stars);
+
+  cache.set('projects', sorted);
+  return sorted;
 }

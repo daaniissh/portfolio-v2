@@ -1,4 +1,4 @@
-export interface IProjectCard {
+export interface IProject {
   name: string;
   slug: string;
   description: string;

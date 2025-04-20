@@ -1,13 +1,11 @@
 import { IPost } from '~/interfaces/post';
-import { postsCache } from '~/utils/cache.server';
+import { cache } from './cache';
 
 const API_URL = process.env.BLOG_API_URL!;
 
 export async function getAllPosts(): Promise<IPost[]> {
-  const cacheKey = 'all-posts';
-
-  const cachedPosts = postsCache.get(cacheKey);
-  if (cachedPosts) return cachedPosts;
+  const cached = cache.get('posts');
+  if (cached) return cached;
 
   try {
     const response = await fetch(API_URL);
@@ -21,7 +19,7 @@ export async function getAllPosts(): Promise<IPost[]> {
       apiURL: getApiURL(post.slug),
     }));
 
-    postsCache.set(cacheKey, newData);
+    cache.set('posts', newData);
     return newData;
   } catch (err) {
     console.error('Failed to fetch posts: ', err);
