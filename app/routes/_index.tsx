@@ -116,7 +116,7 @@ export default function Index() {
             <h3 className="text-foreground text-2xl font-bold">Contact</h3>
             <div className="mt-auto flex items-center gap-5">
               <a
-                href="https://www.linkedin.com/in/suneeth-suresh"
+                href="mailto:moonlitgrace.gaia@gmail.com"
                 target="_blank"
                 className="link flex items-center gap-2"
                 rel="noreferrer"
