@@ -1,7 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
-import { marked } from 'marked';
 import { IProject } from '~/interfaces/project';
 import { fetchGithubStats } from '../functions/github-stats';
 import { fetchNpmStats } from '../functions/npm-stats';
@@ -15,16 +14,18 @@ export async function getProjectsSlugs(): Promise<string[]> {
 }
 
 export async function getProjectData(slug: string): Promise<IProject> {
+  const cached = cache.get('projects')?.find((p) => p.slug === slug);
+  if (cached) return cached;
+
   const filePath = path.join(projectsDir, `${slug}.md`);
   const fileContent = await fs.readFile(filePath, 'utf8');
 
   // parse frontmatter
   const { data, content } = matter(fileContent);
-  // convert md to html
-  const contentHTML = await marked.parse(content);
   // fetch stars count if githubUrl exists
   let stars = 0;
   let language = 'Nil';
+  let languages: string[] = [];
   let downloads = 0;
 
   const [githubStats, npmStats] = await Promise.all([
@@ -32,16 +33,17 @@ export async function getProjectData(slug: string): Promise<IProject> {
     data.is_npm_package ? fetchNpmStats(data.name) : Promise.resolve(null),
   ]);
 
-  if (githubStats) (stars = githubStats.stars), (language = githubStats.language);
+  if (githubStats) (stars = githubStats.stars), (language = githubStats.language), (languages = githubStats.languages);
   if (npmStats) downloads = npmStats.downloads;
 
   return {
     ...data,
     stars,
     language,
+    languages,
     downloads,
     slug,
-    contentHTML,
+    content,
   } as IProject;
 }
 

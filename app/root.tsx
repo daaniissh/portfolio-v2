@@ -33,7 +33,9 @@ export function Layout() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <main className="mx-auto flex min-h-dvh max-w-6xl flex-col gap-10 px-5 text-sm md:flex-row lg:gap-20">
+          <Outlet />
+        </main>
         <ScrollRestoration />
         {data !== undefined && <PublicEnv {...data.ENV} />}
         <Scripts />

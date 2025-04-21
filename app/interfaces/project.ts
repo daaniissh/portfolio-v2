@@ -8,6 +8,6 @@ export interface IProject {
   language: string;
   languages: string[];
   liveURL?: string;
-  githubURL?: string[];
-  contentHTML: string;
+  githubURL?: string;
+  content: string;
 }

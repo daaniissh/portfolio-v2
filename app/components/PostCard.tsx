@@ -2,6 +2,7 @@ import { IPost } from '~/interfaces/post';
 import { cn } from '~/utils/cn';
 import { formatDate } from '~/utils/date';
 import ExternalLinkIcon from './icons/ExternalLink';
+import { Link } from '@remix-run/react';
 
 interface Props extends IPost {
   translateDown: boolean;
@@ -9,8 +10,8 @@ interface Props extends IPost {
 
 export default function PostCard({ translateDown, apiURL, tag, createdAt, title, description }: Props) {
   return (
-    <a
-      href={apiURL}
+    <Link
+      to={apiURL}
       target="_blank"
       className={cn(
         translateDown && 'lg:translate-y-10 lg:transform',
@@ -26,6 +27,6 @@ export default function PostCard({ translateDown, apiURL, tag, createdAt, title,
         <ExternalLinkIcon className="size-5" />
         Read
       </span>
-    </a>
+    </Link>
   );
 }

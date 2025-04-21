@@ -1,11 +1,12 @@
 import { IProject } from '~/interfaces/project';
 import StarIcon from './icons/Star';
 import DownloadIcon from './icons/Download';
+import { Link } from '@remix-run/react';
 
 export default function ProjectCard({ language, name, description, stars, slug, downloads, is_npm_package }: IProject) {
   return (
-    <a
-      href={`/p/${slug}`}
+    <Link
+      to={`/p/${slug}`}
       className="bg-secondary flex flex-col gap-2 p-5 md:p-10 lg:transition lg:group-hover:opacity-50 lg:hover:scale-110 lg:hover:opacity-100"
     >
       <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">{language}</span>
@@ -26,6 +27,6 @@ export default function ProjectCard({ language, name, description, stars, slug, 
           </span>
         )}
       </div>
-    </a>
+    </Link>
   );
 }

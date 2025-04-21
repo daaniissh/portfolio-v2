@@ -37,7 +37,7 @@ export default function Index() {
   }, []);
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-6xl flex-col gap-10 px-5 text-sm md:flex-row lg:gap-20">
+    <>
       <div className="top-0 col-span-1 flex flex-col gap-5 py-10 md:sticky md:max-h-dvh md:w-2/5 md:gap-10 lg:py-20">
         <div className="flex flex-col gap-5">
           <h1 className="text-foreground text-5xl font-bold lg:text-7xl">
@@ -152,6 +152,6 @@ export default function Index() {
           </div>
         </section>
       </div>
-    </main>
+    </>
   );
 }
