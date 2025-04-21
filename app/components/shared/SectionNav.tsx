@@ -7,7 +7,7 @@ export default function SectionNav() {
   const activeSectionId = useActiveSectionId(navSections);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="hidden flex-col gap-5 md:flex">
       {navSections.map((item, idx) => {
         const isActive = item === activeSectionId;
         return (

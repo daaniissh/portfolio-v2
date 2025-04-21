@@ -37,10 +37,10 @@ export default function Index() {
   }, []);
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-6xl gap-20 text-sm">
-      <div className="sticky top-0 col-span-1 flex max-h-dvh w-2/5 flex-col gap-10 py-20">
+    <main className="mx-auto flex min-h-dvh max-w-6xl flex-col gap-10 px-5 text-sm md:flex-row lg:gap-20">
+      <div className="top-0 col-span-1 flex flex-col gap-5 py-10 md:sticky md:max-h-dvh md:w-2/5 md:gap-10 lg:py-20">
         <div className="flex flex-col gap-5">
-          <h1 className="text-foreground text-7xl font-bold">
+          <h1 className="text-foreground text-5xl font-bold lg:text-7xl">
             Hello, I’m
             <br />
             Suneeth S<span className="text-primary">.</span>
@@ -75,17 +75,19 @@ export default function Index() {
           </a>
         </div>
       </div>
-      <div className="col-span-2 w-3/5 space-y-20 py-20">
-        <section id="projects" className="group space-y-2">
+      <div className="space-y-10 py-5 md:w-3/5 md:py-10 lg:space-y-20 lg:py-20">
+        <section id="projects" className="group relative grid gap-2">
+          <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase md:hidden">projects</span>
           {data.projects.map((project, idx) => (
             <ProjectCard key={idx} {...project} />
           ))}
         </section>
-        <section id="blog" className="group relative grid grid-cols-2 gap-2">
+        <section id="blog" className="group relative grid gap-2 lg:grid-cols-2">
+          <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase md:hidden">blog</span>
           <a
             href="https://moonlitgrace.space"
             target="_blank"
-            className="text-foreground absolute top-5 left-1/2 ml-1 text-[0.75em] font-bold tracking-widest uppercase"
+            className="text-foreground text-[0.75em] font-bold tracking-widest uppercase lg:absolute lg:top-5 lg:left-1/2 lg:ml-1"
             rel="noreferrer"
           >
             {blogApiURL}
@@ -94,9 +96,11 @@ export default function Index() {
             <PostCard key={idx} translateDown={idx % 2 !== 0} {...post} />
           ))}
         </section>
-        <section id="sections" className="space-y-20">
+        <section id="sections" className="space-y-10 lg:space-y-20">
           <div className="flex flex-col gap-2">
-            <h3 className="text-foreground text-2xl font-bold">Skills</h3>
+            <h3 className="text-foreground text-2xl font-bold">
+              Skills<span className="text-primary">.</span>
+            </h3>
             <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">languages</span>
             <img src="https://go-skill-icons.vercel.app/api/icons?i=py,ts,js,html,css,bash" alt="languages" />
             <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">
@@ -113,8 +117,10 @@ export default function Index() {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="text-foreground text-2xl font-bold">Contact</h3>
-            <div className="mt-auto flex items-center gap-5">
+            <h3 className="text-foreground text-2xl font-bold">
+              Contact<span className="text-primary">.</span>
+            </h3>
+            <div className="mt-auto flex flex-wrap items-center gap-5 gap-y-2">
               <a
                 href="mailto:moonlitgrace.gaia@gmail.com"
                 target="_blank"

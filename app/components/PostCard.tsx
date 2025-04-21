@@ -13,9 +13,10 @@ export default function PostCard({ translateDown, apiURL, tag, createdAt, title,
       href={apiURL}
       target="_blank"
       className={cn(
-        translateDown && 'translate-y-10 transform',
-        'bg-secondary flex aspect-square flex-col gap-2 p-10 transition group-hover:opacity-50 hover:scale-110 hover:opacity-100'
-      )} rel="noreferrer"
+        translateDown && 'lg:translate-y-10 lg:transform',
+        'bg-secondary flex flex-col gap-2 p-5 md:p-10 lg:aspect-square lg:transition lg:group-hover:opacity-50 lg:hover:scale-110 lg:hover:opacity-100'
+      )}
+      rel="noreferrer"
     >
       <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">{tag}</span>
       <span className="text-xs">{formatDate(createdAt)}</span>
