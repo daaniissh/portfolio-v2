@@ -7,15 +7,15 @@ import { fetchGithubStats } from '../functions/github-stats';
 import { fetchNpmStats } from '../functions/npm-stats';
 import { cache } from './cache';
 
-const PROJECTS_DIR = path.join(process.cwd(), 'content/projects');
+const projectsDir = path.join(process.cwd(), 'data/projects');
 
 export async function getProjectsSlugs(): Promise<string[]> {
-  const files = await fs.readdir(PROJECTS_DIR);
+  const files = await fs.readdir(projectsDir);
   return files.map((file) => file.replace(/\.md$/, ''));
 }
 
 export async function getProjectData(slug: string): Promise<IProject> {
-  const filePath = path.join(PROJECTS_DIR, `${slug}.md`);
+  const filePath = path.join(projectsDir, `${slug}.md`);
   const fileContent = await fs.readFile(filePath, 'utf8');
 
   // parse frontmatter
