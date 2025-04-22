@@ -1,13 +1,13 @@
-import { IGithubCache } from '~/interfaces/cache';
+import { IGithubStats } from '~/interfaces/cache';
 
 const invalidStats = {
   stars: 0,
   language: 'Nil',
   languages: [],
   ok: false,
-} satisfies IGithubCache;
+} satisfies IGithubStats;
 
-export async function fetchGithubStats(repoUrl: string): Promise<IGithubCache> {
+export async function fetchGithubStats(repoUrl: string): Promise<IGithubStats> {
   const match = repoUrl.match(/github\.com\/([^/]+)\/([^/]+)/);
   if (!match) return invalidStats;
 
