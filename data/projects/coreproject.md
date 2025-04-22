@@ -24,4 +24,4 @@ githubURL: 'https://github.com/coreproject-moe/CoreProject'
 
 ## Purpose
 
-The goal of CoreProject is to offer a polished, minimalist, and joyful experience for media consumption — built with care by fans, for fans.
+The goal of `CoreProject` is to offer a polished, minimalist, and joyful experience for media consumption — built with care by fans, for fans.
