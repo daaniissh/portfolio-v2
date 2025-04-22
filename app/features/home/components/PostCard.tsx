@@ -1,8 +1,8 @@
 import { IPost } from '~/interfaces/post';
 import { cn } from '~/utils/cn';
 import { formatDate } from '~/utils/date';
-import ExternalLinkIcon from './icons/ExternalLink';
 import { Link } from '@remix-run/react';
+import ExternalLinkIcon from '~/components/icons/ExternalLink';
 
 interface Props extends IPost {
   translateDown: boolean;

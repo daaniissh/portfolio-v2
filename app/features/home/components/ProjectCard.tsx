@@ -1,7 +1,7 @@
 import { IProject } from '~/interfaces/project';
-import StarIcon from './icons/Star';
-import DownloadIcon from './icons/Download';
 import { Link } from '@remix-run/react';
+import StarIcon from '~/components/icons/Star';
+import DownloadIcon from '~/components/icons/Download';
 
 export default function ProjectCard({ language, name, description, stars, slug, downloads, is_npm_package }: IProject) {
   return (
