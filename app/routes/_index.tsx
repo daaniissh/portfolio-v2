@@ -107,7 +107,7 @@ export default function Index() {
               frameworks & libraries
             </span>
             <img
-              src="https://go-skill-icons.vercel.app/api/icons?i=svelte,react,django,nodejs,tailwind,nextjs,express"
+              src="https://go-skill-icons.vercel.app/api/icons?i=django,svelte,react,remix,solidjs,tailwind,nextjs"
               alt="frameworks & libraries"
             />
             <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">tools & platforms</span>
