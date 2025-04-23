@@ -16,7 +16,7 @@ export default function ProjectHeader({ name, stars, is_npm_package, downloads, 
         <BackIcon className="text-primary size-4" />
         Back
       </Link>
-      <h1 className="text-foreground text-4xl font-bold">{name}</h1>
+      <h1 className="text-foreground text-3xl font-bold md:text-4xl">{name}</h1>
       <div className="flex items-center gap-2">
         <span className="inline-flex items-center gap-1 text-xs font-bold">
           <StarIcon className="size-5" />
