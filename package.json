@@ -26,7 +26,7 @@
     "@tailwindcss/vite": "^4.1.4",
     "@types/marked": "^5.0.2",
     "@types/react": "^19.1.2",
-    "@types/react-dom": "^18.2.7",
+    "@types/react-dom": "^19.1.2",
     "@typescript-eslint/eslint-plugin": "^8.31.0",
     "@typescript-eslint/parser": "^8.31.0",
     "clsx": "^2.1.1",
