@@ -3,7 +3,7 @@ import { Link } from '@remix-run/react';
 import StarIcon from '~/components/icons/Star';
 import DownloadIcon from '~/components/icons/Download';
 
-export default function ProjectCard({ language, name, description, stars, slug, downloads, is_npm_package }: IProject) {
+export default function ProjectCard({ language, name, description, stars, slug, downloads, isNpmPackage }: IProject) {
   return (
     <Link
       to={`/p/${slug}`}
@@ -11,7 +11,7 @@ export default function ProjectCard({ language, name, description, stars, slug, 
     >
       <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase">{language}</span>
       <h3 className="text-foreground text-2xl font-bold">
-        {is_npm_package && '[npm] '}
+        {isNpmPackage && '[npm] '}
         {name}
       </h3>
       <p>{description}</p>
@@ -20,7 +20,7 @@ export default function ProjectCard({ language, name, description, stars, slug, 
           <StarIcon className="size-5" />
           {stars}
         </span>
-        {is_npm_package && (
+        {isNpmPackage && (
           <span className="inline-flex items-center gap-1 text-xs font-bold">
             <DownloadIcon className="size-5" />
             {downloads}/mo

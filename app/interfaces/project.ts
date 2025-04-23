@@ -1,13 +1,11 @@
-export interface IProject {
-  name: string;
+import type { ProjectMetadata } from '~/schemas/project';
+
+export interface IProject extends ProjectMetadata {
   slug: string;
-  description: string;
   stars: number;
-  is_npm_package: boolean;
   downloads: number;
   language: string;
   languages: string[];
-  liveURL?: string;
-  githubURL?: string;
+  isNpmPackage: boolean;
   content: string;
 }

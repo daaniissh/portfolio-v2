@@ -1,6 +1,6 @@
 import { IGithubStats } from '~/interfaces/cache';
 
-const invalidStats = {
+const invalidObj = {
   stars: 0,
   language: 'Nil',
   languages: [],
@@ -9,7 +9,7 @@ const invalidStats = {
 
 export async function fetchGithubStats(repoUrl: string): Promise<IGithubStats> {
   const match = repoUrl.match(/github\.com\/([^/]+)\/([^/]+)/);
-  if (!match) return invalidStats;
+  if (!match) return invalidObj;
 
   const [, owner, repo] = match;
 
@@ -24,7 +24,7 @@ export async function fetchGithubStats(repoUrl: string): Promise<IGithubStats> {
     await fetch(`https://api.github.com/repos/${owner}/${repo}/languages`, { headers }),
   ]);
 
-  if (!repoRes.ok || !repoLangsRes.ok) return invalidStats;
+  if (!repoRes.ok || !repoLangsRes.ok) return invalidObj;
   const repoData = await repoRes.json();
   const repoLangsData = await repoLangsRes.json();
 

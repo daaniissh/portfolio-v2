@@ -5,6 +5,7 @@ import { IProject } from '~/interfaces/project';
 import { fetchGithubStats } from '../functions/github-stats';
 import { fetchNpmStats } from '../functions/npm-stats';
 import { cache } from './cache';
+import { projectMetadataSchema } from '~/schemas/project';
 
 const projectsDir = path.join(process.cwd(), 'data/projects');
 
@@ -22,6 +23,7 @@ export async function getProjectData(slug: string): Promise<IProject> {
 
   // parse frontmatter
   const { data, content } = matter(fileContent);
+  const parsedData = projectMetadataSchema.parse(data);
   // fetch stars count if githubUrl exists
   let stars = 0;
   let language = 'Nil';
@@ -29,22 +31,27 @@ export async function getProjectData(slug: string): Promise<IProject> {
   let downloads = 0;
 
   const [githubStats, npmStats] = await Promise.all([
-    data.githubURL ? fetchGithubStats(data.githubURL) : Promise.resolve(null),
-    data.is_npm_package ? fetchNpmStats(data.name) : Promise.resolve(null),
+    parsedData.githubURL ? fetchGithubStats(parsedData.githubURL) : Promise.resolve(null),
+    parsedData.npmURL ? fetchNpmStats(parsedData.npmURL) : Promise.resolve(null),
   ]);
 
-  if (githubStats) (stars = githubStats.stars), (language = githubStats.language), (languages = githubStats.languages);
   if (npmStats) downloads = npmStats.downloads;
+  if (githubStats) {
+    stars = githubStats.stars;
+    language = githubStats.language;
+    languages = githubStats.languages;
+  }
 
   return {
-    ...data,
+    ...parsedData,
+    isNpmPackage: Boolean(parsedData.npmURL),
     stars,
     language,
     languages,
     downloads,
     slug,
     content,
-  } as IProject;
+  };
 }
 
 export async function getAllProjects(): Promise<IProject[]> {

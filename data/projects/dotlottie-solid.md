@@ -1,9 +1,9 @@
 ---
 name: '@lottiefiles/dotlottie-solid'
 description: 'A Solid library for rendering lottie and dotLottie animations in the browser.'
-is_npm_package: true
-liveURL: 'https://developers.lottiefiles.com/docs/dotlottie-player'
 githubURL: 'https://github.com/LottieFiles/dotlottie-web'
+npmURL: 'https://www.npmjs.com/package/@lottiefiles/dotlottie-solid'
+liveURL: 'https://developers.lottiefiles.com/docs/dotlottie-player'
 ---
 
 ## Overview

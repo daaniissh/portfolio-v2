@@ -4,9 +4,9 @@ import DownloadIcon from '~/components/icons/Download';
 import StarIcon from '~/components/icons/Star';
 import { IProject } from '~/interfaces/project';
 
-type Props = Pick<IProject, 'name' | 'stars' | 'is_npm_package' | 'downloads' | 'description'>;
+type Props = Pick<IProject, 'name' | 'stars' | 'isNpmPackage' | 'downloads' | 'description'>;
 
-export default function ProjectHeader({ name, stars, is_npm_package, downloads, description }: Props) {
+export default function ProjectHeader({ name, stars, isNpmPackage, downloads, description }: Props) {
   return (
     <div className="flex flex-col gap-5">
       <Link
@@ -22,7 +22,7 @@ export default function ProjectHeader({ name, stars, is_npm_package, downloads, 
           <StarIcon className="size-5" />
           {stars}
         </span>
-        {is_npm_package && (
+        {isNpmPackage && (
           <span className="inline-flex items-center gap-1 text-xs font-bold">
             <DownloadIcon className="size-5" />
             {downloads}/mo
