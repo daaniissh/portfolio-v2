@@ -26,7 +26,7 @@ export default function Index() {
       <div className="top-0 col-span-1 flex flex-col gap-5 py-10 md:sticky md:max-h-dvh md:w-2/5 md:gap-10 lg:py-20">
         <ProjectHeader {...data} />
         <ProjectLanguages languages={data.languages} />
-        <ProjectLinks githubURL={data.githubURL} liveURL={data.liveURL} />
+        <ProjectLinks githubURL={data.githubURL} npmURL={data.npmURL} liveURL={data.liveURL} />
       </div>
       <Markdown markdown={data.content} />
     </>
