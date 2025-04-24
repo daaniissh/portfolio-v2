@@ -1,13 +1,14 @@
 import { IPost } from '~/interfaces/post';
-import { Nullable } from '~/types/generics';
 import PostCard from './PostCard';
+import useBlogAPIURL from '../hooks/useBlogApiURL';
 
 interface Props {
-  blogApiURL: Nullable<string>;
   posts: IPost[];
 }
 
-export default function BlogSection({ blogApiURL, posts }: Props) {
+export default function BlogSection({ posts }: Props) {
+  const blogApiURL = useBlogAPIURL();
+
   return (
     <section id="blog" className="group relative grid gap-2 lg:grid-cols-2">
       <span className="text-foreground text-[0.75em] font-bold tracking-widest uppercase md:hidden">blog</span>
